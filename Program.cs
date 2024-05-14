@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace Calculator;
+﻿namespace Calculator;
 
 class Program
 {
@@ -25,16 +23,34 @@ class Program
         Console.WriteLine("----------");
         Console.WriteLine("Selecione uma opção");
 
-        short res = short.Parse(Console.ReadLine());
+        short res;
+        bool isValidinput = short.TryParse(Console.ReadLine(), out res);
 
-        switch (res)
+
+        if (isValidinput)
         {
-            case 1: PerformingOperations(Operations.Soma); break;
-            case 2: PerformingOperations(Operations.Subtracao); break;
-            case 3: PerformingOperations(Operations.Divisao); break;
-            case 4: PerformingOperations(Operations.Multiplicacao); break;
-            case 5: System.Environment.Exit(0); break;
-            default: Menu(); break;
+
+            switch (res)
+            {
+                case 1: PerformingOperations(Operations.Soma); break;
+                case 2: PerformingOperations(Operations.Subtracao); break;
+                case 3: PerformingOperations(Operations.Divisao); break;
+                case 4: PerformingOperations(Operations.Multiplicacao); break;
+                case 5: System.Environment.Exit(0); break;
+                default:
+                    Console.WriteLine("Opção inválida, Por Favor, Selecione uma opção válida.");
+                    Console.WriteLine("Pressione qualquer tecla para continuar...");
+                    Console.ReadKey();
+                    Menu(); break;
+            }
+
+        }
+        else
+        {
+            Console.WriteLine("Opção inválida, Por Favor, Selecione uma opção válida.");
+            Console.WriteLine("Pressione qualquer tecla para continuar...");
+            Console.ReadKey();
+            Menu();
         }
 
 

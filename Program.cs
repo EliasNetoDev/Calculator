@@ -29,10 +29,10 @@ class Program
 
         switch (res)
         {
-            case 1: Soma(); break;
-            case 2: Subtracao(); break;
-            case 3: Divisao(); break;
-            case 4: Multiplicacao(); break;
+            case 1: PerformingOperations(Operations.Soma); break;
+            case 2: PerformingOperations(Operations.Subtracao); break;
+            case 3: PerformingOperations(Operations.Divisao); break;
+            case 4: PerformingOperations(Operations.Multiplicacao); break;
             case 5: System.Environment.Exit(0); break;
             default: Menu(); break;
         }
@@ -40,89 +40,64 @@ class Program
 
     }
 
-    static void Soma()
+    static void PerformingOperations(Func<float, float, float> operation)
     {
 
         Console.Clear();
-
-        Console.WriteLine("Primeiro Valor: ");
-        float v1 = float.Parse(Console.ReadLine());
-        Console.WriteLine("Segundo Valor: ");
-        float v2 = float.Parse(Console.ReadLine());
-
-        Console.WriteLine("");
-
-        float resultado = v1 + v2;
-        // Console.WriteLine("O resultado da soma é: " + resultado);
-        Console.WriteLine($"O resultado da soma é: {resultado}");
-        // Console.WriteLine($"O resultado da soma é: {v1 + v2}");
-        Console.ReadKey();
-        Menu();
-
-    }
-
-    static void Subtracao()
-    {
-
-        Console.Clear();
-
-        Console.WriteLine("Primeiro Valor: ");
+        Console.WriteLine("Digite o Primeiro Valor: ");
         float v1 = float.Parse(Console.ReadLine());
 
-        Console.WriteLine("Segundo Valor: ");
+        Console.WriteLine("Digite o Segundo Valor: ");
         float v2 = float.Parse(Console.ReadLine());
-
         Console.WriteLine("");
 
-        float resultado = v1 - v2;
-        Console.WriteLine($"O resultado da subtração é: {resultado}");
-        Console.ReadKey();
-        Menu();
+        float res = operation(v1, v2);
+        if (!float.IsNaN(res))
+        {
+            Console.WriteLine($"O Resultado da Operação é: {res}");
+        }
 
-    }
-
-    static void Divisao()
-    {
-
-        Console.Clear();
-
-        Console.WriteLine("Primeiro Valor: ");
-        float v1 = float.Parse(Console.ReadLine());
-
-        Console.WriteLine("Segundo Valor: ");
-        float v2 = float.Parse(Console.ReadLine());
-
-        Console.WriteLine("");
-
-        float resultado = v1 / v2;
-        Console.WriteLine($"O Resultado da divisão é: {resultado}");
+        Console.WriteLine("Pressione Qualquer Tecla Para Continuar...");
         Console.ReadKey();
         Menu();
 
 
     }
 
-    static void Multiplicacao()
+    public class Operations()
     {
 
-        Console.Clear();
+        public static float Soma(float v1, float v2)
+        {
+            return v1 + v2;
+        }
 
-        Console.WriteLine("Primeiro Valor: ");
-        float v1 = float.Parse(Console.ReadLine());
+        public static float Subtracao(float v1, float v2)
+        {
+            return v1 - v2;
+        }
 
-        Console.WriteLine("Segundo Valor: ");
-        float v2 = float.Parse(Console.ReadLine());
+        public static float Divisao(float v1, float v2)
+        {
 
-        Console.WriteLine("");
+            if (v2 == 0)
+            {
+                Console.WriteLine("Erro: Divisão por ZERO não é permitida!");
+                return float.NaN;
+            }
+            else
+            {
+                return v1 / v2;
+            }
 
-        float resultado = v1 * v2;
-        Console.WriteLine($"O resultado da multiplicação é: {resultado}");
-        Console.ReadKey();
-        Menu();
+        }
+
+        public static float Multiplicacao(float v1, float v2)
+        {
+            return v1 * v2;
+        }
 
     }
-
-
 
 }
 

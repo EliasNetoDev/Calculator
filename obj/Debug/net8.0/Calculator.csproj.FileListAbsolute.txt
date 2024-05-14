@@ -26,3 +26,4 @@ C:\dev\Calculator1.0\obj\Debug\net8.0\refint\Calculator.dll
 C:\dev\Calculator1.0\obj\Debug\net8.0\Calculator.pdb
 C:\dev\Calculator1.0\obj\Debug\net8.0\Calculator.genruntimeconfig.cache
 C:\dev\Calculator1.0\obj\Debug\net8.0\ref\Calculator.dll
+C:\dev\Calculator1.0\obj\Debug\net8.0\Calculator.sourcelink.json
